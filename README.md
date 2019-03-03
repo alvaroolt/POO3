@@ -14,6 +14,7 @@ siguientes opciones:
 5. Entrada de mercancía
 6. Salida de mercancía
 7. Salir
+
 La entrada y salida de mercancía supone respectivamente el incremento y
 decremento de stock de un determinado artículo. Hay que controlar que no se
 pueda sacar más mercancía de la que hay en el almacén.
