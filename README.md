@@ -1,4 +1,4 @@
-# EjerciciosPOO3
+# POO3
 ejerciciosPOO3 (java) / poo3 (python)
 Actividades orientadas a objetos (tercera batería)
 
