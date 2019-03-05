@@ -10,7 +10,7 @@ package ejerciciosPOO3.gestisimal;
  * 
  * @author Álvaro Leiva
  * @author Rafael Infante
- *
+ * @version 1.0
  */
 public class GESTISIMAL {
 

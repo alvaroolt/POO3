@@ -13,13 +13,13 @@ import java.util.Scanner;
  * 
  * @author Álvaro Leiva
  * @author Rafael Infante
- *
+ * @version 1.0
  */
 public class TestGESTISIMAL {
 
 	public static void main(String[] args) {
 
-		// Definición de la colección Set
+		// Definición de la colección ArrayList
 		ArrayList<GESTISIMAL> articulo = new ArrayList<GESTISIMAL>();
 
 		Scanner sc = new Scanner(System.in);
@@ -77,7 +77,7 @@ public class TestGESTISIMAL {
 				if (existe == false) {
 					articulo.add(new GESTISIMAL(id, desc, pCom, pVen, stock));
 					System.out.println("Artículo dado de alta correctamente.\n");
-				} else if(existe == true){
+				} else {
 					System.out.println("Ese artículo ya existe. Inténtelo otra vez.");
 				}
 
@@ -101,33 +101,85 @@ public class TestGESTISIMAL {
 				System.out.print("Introduce el código identificador del artículo a modificar: ");
 				String id3 = sc.next();
 
+				String nuevoId;
 				for (int i = 0; i < articulo.size(); i++) {
 
-					System.out.print("Nuevo código identificador del artículo: ");
-					String nuevoId = sc.next();
+					if (articulo.get(i).getCodigoId().equals(id3)) {
 
-					System.out.println("Introduce una breve descripción del artículo:");
-					String nuevaDesc = sc.next();
+						boolean existeId = false;
+						do {
+							System.out.print("Nuevo código identificador del artículo: ");
+							nuevoId = sc.next();
 
-					System.out.print("Precio de compra del artículo: ");
-					double nuevoPCom = sc.nextDouble();
+							for (int j = 0; j < articulo.size(); j++) {
+								if (articulo.get(j).getCodigoId().equals(nuevoId))
+									existeId = true;
+							}
 
-					System.out.print("Precio de venta del artículo: ");
-					double nuevoPVen = sc.nextDouble();
+							if (existeId == true) {
+								System.out.println("Ese código identificador ya está en uso. Introduce otro.");
+							}
+						} while (existeId == true);
 
-					System.out.print("Cantidad del artículo en stock: ");
-					int nuevoStock = sc.nextInt();
-					
+						articulo.get(i).setCodigoId(nuevoId);
+
+						System.out.println("Introduce una breve descripción del artículo:");
+						String nuevaDesc = sc.next();
+						articulo.get(i).setDescripcion(nuevaDesc);
+
+						System.out.print("Precio de compra del artículo: ");
+						double nuevoPCom = sc.nextDouble();
+						articulo.get(i).setPrecioCompra(nuevoPCom);
+
+						System.out.print("Precio de venta del artículo: ");
+						double nuevoPVen = sc.nextDouble();
+						articulo.get(i).setPrecioVenta(nuevoPVen);
+
+						System.out.print("Cantidad del artículo en stock: ");
+						int nuevoStock = sc.nextInt();
+						articulo.get(i).setStock(nuevoStock);
+					}
+
+					// if (!articulo.get(i).getCodigoId().equals(id3)) {
+					// System.out.println("Ese artículo no se encuentra en el almacén.");
+					// }
 				}
-				if (!articulo.equals(id3)) {
-					System.out.println("Ese código no está registrado.");
-				}
+
 				break;
 
 			case 5:
+				System.out.print("Introduce el código identificador del artículo a modificar: ");
+				String id4 = sc.next();
+
+				for (int i = 0; i < articulo.size(); i++) {
+					
+					if (articulo.get(i).getCodigoId().equals(id4)) {
+						System.out.print("Introduce el stock nuevo que ha llegado al almacén: ");
+						int sumaStock = sc.nextInt();
+						articulo.get(i).setStock(articulo.get(i).getStock() + sumaStock);
+					}
+				}
+				
 				break;
 
 			case 6:
+				System.out.print("Introduce el código identificador del artículo a modificar: ");
+				String id5 = sc.next();
+
+				for (int i = 0; i < articulo.size(); i++) {
+					
+					if (articulo.get(i).getCodigoId().equals(id5)) {
+						System.out.print("Introduce el stock que ha salido del almacén: ");
+						int restaStock = sc.nextInt();
+						articulo.get(i).setStock(articulo.get(i).getStock() - restaStock);
+						
+						if(articulo.get(i).getStock() < 0) {
+							System.out.println("Se ha introducido un valor mayor al stock existente. El programa supone que nos hemos quedado sin existencias.");
+							articulo.get(i).setStock(0);
+						}
+					}
+				}
+				
 				break;
 
 			default:
@@ -141,5 +193,5 @@ public class TestGESTISIMAL {
 		System.out.println("ALMACEN" + "\n=========" + "\n1. Listado" + "\n2. Alta" + "\n3. Baja" + "\n4. Modificación"
 				+ "\n5. Entrada de mercancía" + "\n6. Salida de mercancía" + "\n7. Salir" + "\n");
 	}
-	
+
 }
