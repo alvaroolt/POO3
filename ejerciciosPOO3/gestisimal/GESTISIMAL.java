@@ -110,7 +110,7 @@ public class GESTISIMAL {
 	@Override
 	public String toString() {
 		return "Articulo [codigoId=" + codigoId + ", descripcion=" + descripcion + ", precioCompra=" + precioCompra
-				+ ", precioVenta=" + precioVenta + ", stock=" + stock + "]";
+				+ "€, precioVenta=" + precioVenta + "€, stock=" + stock + "]";
 	}
 
 }
