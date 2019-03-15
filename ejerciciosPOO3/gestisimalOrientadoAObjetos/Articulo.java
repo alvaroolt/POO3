@@ -1,0 +1,168 @@
+package ejerciciosPOO3.gestisimalOrientadoAObjetos;
+
+/**
+ * Crea el programa GESTISIMAL (GESTIón SIMplificada de Almacén) para llevar el
+ * control de los artículos de un almacén. De cada artículo se debe saber el
+ * código, la descripción, el precio de compra, el precio de venta y el stock
+ * (número de unidades). La entrada y salida de mercancía supone respectivamente
+ * el incremento y decremento de stock de un determinado artículo. Hay que
+ * controlar que no se pueda sacar más mercancía de la que hay en el almacén.
+ * 
+ * Partiendo del enunciado del libro, vamos a planificar el diseño de la
+ * aplicación antes de implementarla:
+ * 
+ * Necesito una clase Articulo que representa a los artículos del almacén. Su
+ * estado será: código, descripción, precio de compra, precio de venta y número
+ * de unidades (nunca negativas). Como comportamiento: Considero que el código
+ * va a generarse de forma automática en el constructor, así no puede haber dos
+ * artículos con el mismo código. Esto implica que no puede modificarse el
+ * código de un artículo. Sí el resto de las propiedades. Podremos mostrar el
+ * artículo, por lo que necesito una representación del artículo en forma de
+ * cadena (toString) Clase Almacen que realice el alta, baja, modificación,
+ * entrada de mercancía (incrementa unidades), salida de mercancía (decrementa
+ * unidades) El estado será un ArrayList de artículos. Esta clase es un
+ * envoltorio de un ArrrayList. Su comportamiento será: añadir artículos (no
+ * puede haber dos artículos iguales), eliminar artículos, incrementar las
+ * existencias de un articulo (se delega en la clase artículo), decrementar las
+ * existencias de un artículo (nunca por debajo de cero, se delega en la clase
+ * artículo), devolver un artículo (para mostrarlo). Para listar el almacén
+ * podría devolverse una cadena con todos los artículos del almacén (toString)
+ * Clase TestAlmacen, donde se realiza la comunicación con el usuario (mostrar
+ * menú y recuperar opción del menú, mostrar errores, listar) y se manipula el
+ * almacén. Debes organizarla en métodos que deleguen en la clase almacén
+ * (listar, annadir, eliminar... al menos uno por cada una de las opciones del
+ * menú).
+ * 
+ * @author Álvaro Leiva
+ * @author Rafael Infante
+ * @version
+ */
+
+public class Articulo {
+
+	// variable estática que utilizo para obtener el codigo de cada articulo
+	private static int contador = 1;
+
+	// atributos del Articulo
+	private int codigo;
+	private String descripcion;
+	private double precioCompra;
+	private double precioVenta;
+	private int stock;
+
+	// constructor
+	public Articulo(String descripcion, double precioCompra, double precioVenta, int stock) {
+
+		this.codigo = generaCodigo();
+		this.descripcion = descripcion;
+		do {
+			this.precioCompra = precioCompra;
+			this.precioVenta = precioVenta;
+		} while (!ventaMayorQueCompra());
+		this.stock = stock;
+		compruebaStrock();
+
+	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	@SuppressWarnings("unused")
+	private void setCodigo(int codigoId) {
+		this.codigo = codigoId;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public double getPrecioCompra() {
+		return precioCompra;
+	}
+
+	public void setPrecioCompra(double precioCompra) {
+		this.precioCompra = precioCompra;
+	}
+
+	public double getPrecioVenta() {
+		return precioVenta;
+	}
+
+	public void setPrecioVenta(double precioVenta) {
+		this.precioVenta = precioVenta;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
+	// método que genera un código para cada artículo de forma automática
+	private int generaCodigo() {
+		int codigo = contador;
+		contador++;
+		return codigo;
+	}
+
+	// método que comprueba que el precio de venta sea mayor que el de compra (no
+	// puede ser al revés, el almacén no obtendría beneficios)
+	private boolean ventaMayorQueCompra() {
+		if (getPrecioVenta() > getPrecioCompra()) {
+			return true;
+		} else {
+			System.out.println("Precio de venta no puede ser menor que precio de compra.");
+			return false;
+		}
+	}
+
+	// método que comprueba que el valor del stock del artículo no sea negativo. En
+	// el caso de serlo devuelve 0
+	private void compruebaStrock() {
+		if (getStock() < 0) {
+			setStock(0);
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + codigo;
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Articulo other = (Articulo) obj;
+		if (codigo != other.codigo)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Articulo [codigo=" + codigo + ", descripcion=" + descripcion + ", precioCompra=" + precioCompra
+				+ "€, precioVenta=" + precioVenta + "€, stock=" + stock + "]";
+	}
+
+}
