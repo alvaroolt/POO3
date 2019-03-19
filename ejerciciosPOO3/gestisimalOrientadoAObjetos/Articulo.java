@@ -35,7 +35,7 @@ package ejerciciosPOO3.gestisimalOrientadoAObjetos;
  * 
  * @author Álvaro Leiva
  * @author Rafael Infante
- * @version
+ * @version 1.0
  */
 
 public class Articulo {
@@ -62,6 +62,11 @@ public class Articulo {
 		this.stock = stock;
 		compruebaStrock();
 
+	}
+
+	// constructor (2)
+	public Articulo(int codigo) {
+		setCodigo(codigo);
 	}
 
 	public int getCodigo() {
@@ -131,7 +136,9 @@ public class Articulo {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -142,7 +149,9 @@ public class Articulo {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -157,6 +166,25 @@ public class Articulo {
 		if (codigo != other.codigo)
 			return false;
 		return true;
+	}
+
+	public void modificarArticulo(String descripcion, double precioCompra, double precioVenta, int stock) {
+		setDescripcion(descripcion);
+		setPrecioCompra(precioCompra);
+		setPrecioVenta(precioVenta);
+		setStock(stock);
+	}
+
+	public void incrementarStock(int cantidad) {
+
+		setStock(getStock() + cantidad);
+
+	}
+
+	public void decrementarStock(int cantidad) {
+
+		setStock(getStock() - cantidad);
+
 	}
 
 	@Override

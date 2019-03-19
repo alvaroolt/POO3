@@ -45,20 +45,65 @@ import ejerciciosPOO3.gestisimal.GESTISIMAL;
 
 public class Almacen {
 
-	// Definición de la colección ArrayList
-	private ArrayList<Articulo> articulo = new ArrayList<Articulo>();
+	// Definición de la colección articulo
+	private ArrayList<Articulo> almacen = new ArrayList<Articulo>();
 
 	public void muestraListado() {
 
-		if (articulo.isEmpty()) {
+		if (almacen.isEmpty()) {
 			System.out.println("El almacén está vacío.\n");
 		} else {
 			System.out.println("Artículos en el almacén:");
 
 			// i es la variable auxiliar que utilizo para recorrer el for each
-			for (Articulo i : articulo) {
-				System.out.println(i + "\n");
+			for (Articulo i : almacen) {
+				System.out.println(i);
 			}
 		}
 	}
+
+	public void darAlta(String descripcion, double precioCompra, double precioVenta, int stock) {
+
+		Articulo articulo = new Articulo(descripcion, precioCompra, precioVenta, stock);
+		almacen.add(articulo);
+
+	}
+
+	public void darBaja(int codigo) {
+
+		codigo--;
+		almacen.remove(codigo);
+		System.out.println("Artículo eliminado correctamente.");
+
+	}
+
+	public void modificarArticulo(Articulo articulo, String descripcion, double precioCompra, double precioVenta,
+			int stock) {
+
+		int indice = almacen.indexOf(articulo);
+		articulo.modificarArticulo(descripcion, precioCompra, precioVenta, stock);
+		almacen.set(indice, almacen.get(indice));
+
+	}
+
+	public void incrementarStock(int codigo, int cantidad) {
+
+		Articulo articulo = almacen.get(almacen.indexOf(new Articulo(codigo)));
+		articulo.incrementarStock(cantidad);
+
+	}
+
+	public void decrementarStock(int codigo, int cantidad) {
+
+		Articulo articulo = almacen.get(almacen.indexOf(new Articulo(codigo)));
+		articulo.decrementarStock(cantidad);
+
+	}
+
+	public Articulo getCodigo(int codigo) {
+
+		return almacen.get(almacen.indexOf(new Articulo(codigo)));
+
+	}
+
 }
