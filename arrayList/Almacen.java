@@ -28,6 +28,9 @@ public class Almacen {
 	 * metodo que genera la lista de los articulos de mi almacen
 	 */
 	public void listarAlmacen() {
+		if(almacen.isEmpty()) {
+			System.out.println("El almacen esta vacio.");
+		}
 		for (i = 0; i < almacen.size(); i++) {
 			System.out.println(almacen.get(i));
 		}
@@ -116,9 +119,13 @@ public class Almacen {
 	 * 
 	 * @param codigo
 	 * @param cantidad
+	 * @throws cantidadNoValida 
 	 */
-	public void decrementar(int codigo, int cantidad) {
+	public void decrementar(int codigo, int cantidad) throws cantidadNoValida {
 		Articulo articulo = almacen.get(almacen.indexOf(new Articulo(codigo)));
+		if(articulo.getStock()<cantidad) {
+			throw new cantidadNoValida("El stock no puede ser menor que 0");
+		}
 		articulo.decrementaStock(cantidad);
 	}
 	
