@@ -21,8 +21,10 @@ import ejerciciosPOO3.gestisimalOrientadoAObjetos.excepciones.ValorNoPositivoExc
  */
 public class TestAlmacen {
 
+	// scanner
 	static Scanner sc = new Scanner(System.in);
 
+	// objeto almacen
 	static Almacen almacen = new Almacen();
 
 	public static void main(String[] args) throws ParametroNoNumericoException {
@@ -50,7 +52,7 @@ public class TestAlmacen {
 			System.out.print("\nElige una opción: ");
 			int opcion = sc.nextInt();
 			return opcion;
-		} catch (Exception e) {
+		} catch (Exception e) { //si opcion no es numérico, salta el catch
 
 			System.err.println("Error al introducir el parámetro.");
 			sc.nextLine();
@@ -59,6 +61,7 @@ public class TestAlmacen {
 
 	}
 
+	// método que finaliza el programa
 	private static void finalizarPrograma() {
 
 		System.out.println("Fin de programa.");
@@ -104,6 +107,7 @@ public class TestAlmacen {
 				finalizarPrograma();
 				break;
 
+			// si el switch no entra en ningún case, entra en default
 			default:
 				System.out.println("No introdujiste una opción correcta. Inténtalo de nuevo.\n");
 				break;
@@ -129,6 +133,7 @@ public class TestAlmacen {
 			System.out.print("Cantidad del artículo en stock: ");
 			int stock = sc.nextInt();
 
+			//esta condicion controla que no hayan valores negativos
 			if (precioCompra < 0 || precioVenta < 0 || stock < 0) {
 				throw new ValorNoPositivoException("Introdujiste algún valor negativo.");
 			}
@@ -136,7 +141,7 @@ public class TestAlmacen {
 			almacen.darAlta(descripcion, precioCompra, precioVenta, stock);
 			System.out.println("Artículo dado de alta correctamente.\n");
 
-		} catch (Exception e) {
+		} catch (Exception e) { //si se introducen parámetros erróneos, salta el catch (ejemplo, texto en integer)
 
 			System.err.println("Hubo algún problema al añadir el artículo.\n");
 			sc.nextLine();
@@ -154,7 +159,7 @@ public class TestAlmacen {
 
 			almacen.darBaja(codigo);
 
-		} catch (Exception e) {
+		} catch (Exception e) { //si no existe el codigo, salta el catch
 
 			System.err.println("El artículo no se encuentra en el almacén.\n");
 			sc.nextLine();
@@ -199,6 +204,8 @@ public class TestAlmacen {
 		}
 	}
 
+	// método que incrementa el stock según el parámetro codigo que le envie el
+	// usuario
 	private static void incrementarStock() {
 
 		try {
@@ -230,6 +237,8 @@ public class TestAlmacen {
 		}
 	}
 
+	// método que decrementa el stock según el parámetro codigo que le envie el
+	// usuario
 	private static void decrementarStock() {
 
 		try {

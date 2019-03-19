@@ -62,6 +62,8 @@ public class Almacen {
 		}
 	}
 
+	// método que da de alta al artículo según los parámetros pasados en el
+	// constructor
 	public void darAlta(String descripcion, double precioCompra, double precioVenta, int stock) {
 
 		Articulo articulo = new Articulo(descripcion, precioCompra, precioVenta, stock);
@@ -69,6 +71,8 @@ public class Almacen {
 
 	}
 
+	// método que da de baja al artículo según el codigo que se le pase
+	// (identificador)
 	public void darBaja(int codigo) {
 
 		codigo--;
@@ -77,6 +81,8 @@ public class Almacen {
 
 	}
 
+	// método que modifica el artículo (reescribir los parámetros descripcion,
+	// precios y stock) según el codigo que le pase el usuario
 	public void modificarArticulo(Articulo articulo, String descripcion, double precioCompra, double precioVenta,
 			int stock) {
 
@@ -86,6 +92,7 @@ public class Almacen {
 
 	}
 
+	//método que incrementa el stock según el codigo que le pasa el usuario
 	public void incrementarStock(int codigo, int cantidad) {
 
 		Articulo articulo = almacen.get(almacen.indexOf(new Articulo(codigo)));
@@ -93,6 +100,7 @@ public class Almacen {
 
 	}
 
+//método que decrementa el stock según el codigo que le pasa el usuario
 	public void decrementarStock(int codigo, int cantidad) {
 
 		Articulo articulo = almacen.get(almacen.indexOf(new Articulo(codigo)));
@@ -100,6 +108,7 @@ public class Almacen {
 
 	}
 
+	//sobrecarga del constructor (únicamente codigo)
 	public Articulo getCodigo(int codigo) {
 
 		return almacen.get(almacen.indexOf(new Articulo(codigo)));
