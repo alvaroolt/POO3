@@ -52,7 +52,7 @@ public class TestAlmacen {
 			System.out.print("\nElige una opción: ");
 			int opcion = sc.nextInt();
 			return opcion;
-		} catch (Exception e) { //si opcion no es numérico, salta el catch
+		} catch (Exception e) { // si opcion no es numérico, salta el catch
 
 			System.err.println("Error al introducir el parámetro.");
 			sc.nextLine();
@@ -81,6 +81,7 @@ public class TestAlmacen {
 
 			case 1:
 				almacen.muestraListado();
+				// System.out.println(almacen);
 				break;
 
 			case 2:
@@ -116,7 +117,9 @@ public class TestAlmacen {
 
 	}
 
-	// método que añade un nuevo artículo al almacén
+	/**
+	 * método que añade un nuevo artículo al almacén
+	 */
 	private static void darAlta() {
 
 		try {
@@ -133,7 +136,7 @@ public class TestAlmacen {
 			System.out.print("Cantidad del artículo en stock: ");
 			int stock = sc.nextInt();
 
-			//esta condicion controla que no hayan valores negativos
+			// esta condicion controla que no hayan valores negativos
 			if (precioCompra < 0 || precioVenta < 0 || stock < 0) {
 				throw new ValorNoPositivoException("Introdujiste algún valor negativo.");
 			}
@@ -141,7 +144,8 @@ public class TestAlmacen {
 			almacen.darAlta(descripcion, precioCompra, precioVenta, stock);
 			System.out.println("Artículo dado de alta correctamente.\n");
 
-		} catch (Exception e) { //si se introducen parámetros erróneos, salta el catch (ejemplo, texto en integer)
+		} catch (Exception e) { // si se introducen parámetros erróneos, salta el catch (ejemplo, texto en
+														// integer)
 
 			System.err.println("Hubo algún problema al añadir el artículo.\n");
 			sc.nextLine();
@@ -149,7 +153,9 @@ public class TestAlmacen {
 		}
 	}
 
-	// método que elimina un artículo del almacén
+	/**
+	 * método que elimina un artículo del almacén
+	 */
 	private static void darBaja() {
 
 		try {
@@ -159,7 +165,7 @@ public class TestAlmacen {
 
 			almacen.darBaja(codigo);
 
-		} catch (Exception e) { //si no existe el codigo, salta el catch
+		} catch (Exception e) { // si no existe el codigo, salta el catch
 
 			System.err.println("El artículo no se encuentra en el almacén.\n");
 			sc.nextLine();

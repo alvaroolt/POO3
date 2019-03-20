@@ -190,7 +190,7 @@ public class Articulo {
 	@Override
 	public String toString() {
 		return "Articulo [codigo=" + codigo + ", descripcion=" + descripcion + ", precioCompra=" + precioCompra
-				+ "€, precioVenta=" + precioVenta + "€, stock=" + stock + "]";
+				+ "€, precioVenta=" + precioVenta + "€, stock=" + stock + "]\n";
 	}
 
 }

@@ -48,6 +48,9 @@ public class Almacen {
 	// Definición de la colección articulo
 	private ArrayList<Articulo> almacen = new ArrayList<Articulo>();
 
+	/**
+	 * este es el toString()
+	 */
 	public void muestraListado() {
 
 		if (almacen.isEmpty()) {
@@ -71,6 +74,21 @@ public class Almacen {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	// @Override
+	// public String toString() {
+	// //return "Almacen \n" + almacen + "]\n";
+	// for(Articulo i: almacen) {
+	// String mensaje = "" + i;
+	// return mensaje;
+	// }
+	// return null;
+	// }
+
 	// método que da de baja al artículo según el codigo que se le pase
 	// (identificador)
 	public void darBaja(int codigo) {
@@ -78,6 +96,8 @@ public class Almacen {
 		codigo--;
 		almacen.remove(codigo);
 		System.out.println("Artículo eliminado correctamente.");
+
+		// añadir excepción (en TestAlmacen no)
 
 	}
 
@@ -92,7 +112,7 @@ public class Almacen {
 
 	}
 
-	//método que incrementa el stock según el codigo que le pasa el usuario
+	// método que incrementa el stock según el codigo que le pasa el usuario
 	public void incrementarStock(int codigo, int cantidad) {
 
 		Articulo articulo = almacen.get(almacen.indexOf(new Articulo(codigo)));
@@ -100,7 +120,7 @@ public class Almacen {
 
 	}
 
-//método que decrementa el stock según el codigo que le pasa el usuario
+	// método que decrementa el stock según el codigo que le pasa el usuario
 	public void decrementarStock(int codigo, int cantidad) {
 
 		Articulo articulo = almacen.get(almacen.indexOf(new Articulo(codigo)));
@@ -108,7 +128,7 @@ public class Almacen {
 
 	}
 
-	//sobrecarga del constructor (únicamente codigo)
+	// sobrecarga del constructor (únicamente codigo)
 	public Articulo getCodigo(int codigo) {
 
 		return almacen.get(almacen.indexOf(new Articulo(codigo)));
