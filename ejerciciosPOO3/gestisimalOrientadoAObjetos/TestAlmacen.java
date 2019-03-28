@@ -151,7 +151,7 @@ public class TestAlmacen {
 			almacen.darAlta(descripcion, precioCompra, precioVenta, stock);
 			System.out.println("Artículo dado de alta correctamente.\n");
 
-		} catch (Exception e) { // si se introducen parámetros erróneos, salta el catch (ejemplo, texto en
+		} catch (ValorNoPositivoException  e) { // si se introducen parámetros erróneos, salta el catch (ejemplo, texto en
 														// integer)
 
 			System.err.println("Hubo algún problema al añadir el artículo.\n" + e.getMessage());

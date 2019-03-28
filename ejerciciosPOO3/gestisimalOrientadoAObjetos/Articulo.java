@@ -51,13 +51,13 @@ public class Articulo {
 	private int stock;
 
 	// constructor
-	public Articulo(String descripcion, double precioCompra, double precioVenta, int stock) {
+	public Articulo(String descripcion, double precioCompra, double precioVenta, int stock) throws ValorNoPositivoException {
 
-		this.codigo = generaCodigo();
-		this.descripcion = descripcion;
-		this.precioCompra = precioCompra;
-		this.precioVenta = precioVenta;
-		this.stock = stock;
+		setCodigo(generaCodigo());
+		setDescripcion(descripcion);
+		setPrecioCompra(precioCompra);
+		setPrecioVenta(precioVenta);
+		setStock(stock);
 		// compruebaStrock();
 
 	}
@@ -71,7 +71,6 @@ public class Articulo {
 		return codigo;
 	}
 
-	@SuppressWarnings("unused")
 	private void setCodigo(int codigoId) {
 		this.codigo = codigoId;
 	}

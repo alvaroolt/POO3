@@ -68,6 +68,7 @@ public class Almacen {
 	 * @param precioCompra
 	 * @param precioVenta
 	 * @param stock
+	 * @throws ValorNoPositivoException 
 	 */
 	public void darAlta(String descripcion, double precioCompra, double precioVenta, int stock) throws ValorNoPositivoException{
 
