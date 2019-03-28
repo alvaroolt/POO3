@@ -1,51 +1,48 @@
 package ejerciciosPOO3.gestisimalOrientadoAObjetos;
 
 import java.util.ArrayList;
-import java.util.Scanner;
-
-import ejerciciosPOO3.gestisimal.GESTISIMAL;
 
 /**
- * Crea el programa GESTISIMAL (GESTIÛn SIMplificada de AlmacÈn) para llevar el
- * control de los artÌculos de un almacÈn. De cada artÌculo se debe saber el
- * cÛdigo, la descripciÛn, el precio de compra, el precio de venta y el stock
- * (n˙mero de unidades). La entrada y salida de mercancÌa supone respectivamente
- * el incremento y decremento de stock de un determinado artÌculo. Hay que
- * controlar que no se pueda sacar m·s mercancÌa de la que hay en el almacÈn.
+ * Crea el programa GESTISIMAL (GESTI√≥n SIMplificada de Almac√©n) para llevar el
+ * control de los art√≠culos de un almac√©n. De cada art√≠culo se debe saber el
+ * c√≥digo, la descripci√≥n, el precio de compra, el precio de venta y el stock
+ * (n√∫mero de unidades). La entrada y salida de mercanc√≠a supone respectivamente
+ * el incremento y decremento de stock de un determinado art√≠culo. Hay que
+ * controlar que no se pueda sacar m√°s mercanc√≠a de la que hay en el almac√©n.
  * 
- * Partiendo del enunciado del libro, vamos a planificar el diseÒo de la
- * aplicaciÛn antes de implementarla:
+ * Partiendo del enunciado del libro, vamos a planificar el dise√±o de la
+ * aplicaci√≥n antes de implementarla:
  * 
- * Necesito una clase Articulo que representa a los artÌculos del almacÈn. Su
- * estado ser·: cÛdigo, descripciÛn, precio de compra, precio de venta y n˙mero
- * de unidades (nunca negativas). Como comportamiento: Considero que el cÛdigo
- * va a generarse de forma autom·tica en el constructor, asÌ no puede haber dos
- * artÌculos con el mismo cÛdigo. Esto implica que no puede modificarse el
- * cÛdigo de un artÌculo. SÌ el resto de las propiedades. Podremos mostrar el
- * artÌculo, por lo que necesito una representaciÛn del artÌculo en forma de
- * cadena (toString) Clase Almacen que realice el alta, baja, modificaciÛn,
- * entrada de mercancÌa (incrementa unidades), salida de mercancÌa (decrementa
- * unidades) El estado ser· un ArrayList de artÌculos. Esta clase es un
- * envoltorio de un ArrrayList. Su comportamiento ser·: aÒadir artÌculos (no
- * puede haber dos artÌculos iguales), eliminar artÌculos, incrementar las
- * existencias de un articulo (se delega en la clase artÌculo), decrementar las
- * existencias de un artÌculo (nunca por debajo de cero, se delega en la clase
- * artÌculo), devolver un artÌculo (para mostrarlo). Para listar el almacÈn
- * podrÌa devolverse una cadena con todos los artÌculos del almacÈn (toString)
- * Clase TestAlmacen, donde se realiza la comunicaciÛn con el usuario (mostrar
- * men˙ y recuperar opciÛn del men˙, mostrar errores, listar) y se manipula el
- * almacÈn. Debes organizarla en mÈtodos que deleguen en la clase almacÈn
+ * Necesito una clase Articulo que representa a los art√≠culos del almac√©n. Su
+ * estado ser√°: c√≥digo, descripci√≥n, precio de compra, precio de venta y n√∫mero
+ * de unidades (nunca negativas). Como comportamiento: Considero que el c√≥digo
+ * va a generarse de forma autom√°tica en el constructor, as√≠ no puede haber dos
+ * art√≠culos con el mismo c√≥digo. Esto implica que no puede modificarse el
+ * c√≥digo de un art√≠culo. S√≠ el resto de las propiedades. Podremos mostrar el
+ * art√≠culo, por lo que necesito una representaci√≥n del art√≠culo en forma de
+ * cadena (toString) Clase Almacen que realice el alta, baja, modificaci√≥n,
+ * entrada de mercanc√≠a (incrementa unidades), salida de mercanc√≠a (decrementa
+ * unidades) El estado ser√° un ArrayList de art√≠culos. Esta clase es un
+ * envoltorio de un ArrrayList. Su comportamiento ser√°: a√±adir art√≠culos (no
+ * puede haber dos art√≠culos iguales), eliminar art√≠culos, incrementar las
+ * existencias de un articulo (se delega en la clase art√≠culo), decrementar las
+ * existencias de un art√≠culo (nunca por debajo de cero, se delega en la clase
+ * art√≠culo), devolver un art√≠culo (para mostrarlo). Para listar el almac√©n
+ * podr√≠a devolverse una cadena con todos los art√≠culos del almac√©n (toString)
+ * Clase TestAlmacen, donde se realiza la comunicaci√≥n con el usuario (mostrar
+ * men√∫ y recuperar opci√≥n del men√∫, mostrar errores, listar) y se manipula el
+ * almac√©n. Debes organizarla en m√©todos que deleguen en la clase almac√©n
  * (listar, annadir, eliminar... al menos uno por cada una de las opciones del
- * men˙).
+ * men√∫).
  * 
- * @author ¡lvaro Leiva
+ * @author √Ålvaro Leiva
  * @author Rafael Infante
  * @version 1.0
  */
 
 public class Almacen {
 
-	// DefiniciÛn de la colecciÛn articulo
+	// Definici√≥n de la colecci√≥n articulo
 	private ArrayList<Articulo> almacen = new ArrayList<Articulo>();
 
 	/**
@@ -54,9 +51,9 @@ public class Almacen {
 	public void muestraListado() {
 
 		if (almacen.isEmpty()) {
-			System.out.println("El almacÈn est· vacÌo.\n");
+			System.out.println("El almac√©n est√° vac√≠o.\n");
 		} else {
-			System.out.println("ArtÌculos en el almacÈn:");
+			System.out.println("Art√≠culos en el almac√©n:");
 
 			// i es la variable auxiliar que utilizo para recorrer el for each
 			for (Articulo i : almacen) {
@@ -65,9 +62,14 @@ public class Almacen {
 		}
 	}
 
-	// mÈtodo que da de alta al artÌculo seg˙n los par·metros pasados en el
-	// constructor
-	public void darAlta(String descripcion, double precioCompra, double precioVenta, int stock) {
+	/**
+	 * m√©todo que da de alta al art√≠culo seg√∫n los par√°metros pasados en el constructor
+	 * @param descripcion
+	 * @param precioCompra
+	 * @param precioVenta
+	 * @param stock
+	 */
+	public void darAlta(String descripcion, double precioCompra, double precioVenta, int stock) throws ValorNoPositivoException{
 
 		Articulo articulo = new Articulo(descripcion, precioCompra, precioVenta, stock);
 		almacen.add(articulo);
@@ -89,46 +91,70 @@ public class Almacen {
 	// return null;
 	// }
 
-	// mÈtodo que da de baja al artÌculo seg˙n el codigo que se le pase
-	// (identificador)
+	/**
+	 * m√©todo que da de baja al art√≠culo seg√∫n el codigo que se le pase(identificador)
+	 * @param codigo
+	 */
 	public void darBaja(int codigo) {
 
 		codigo--;
 		almacen.remove(codigo);
-		System.out.println("ArtÌculo eliminado correctamente.");
+		System.out.println("Art√≠culo eliminado correctamente.");
 
-		// aÒadir excepciÛn (en TestAlmacen no)
+		// a√±adir excepci√≥n (en TestAlmacen no)
 
 	}
 
-	// mÈtodo que modifica el artÌculo (reescribir los par·metros descripcion,
-	// precios y stock) seg˙n el codigo que le pase el usuario
-	public void modificarArticulo(Articulo articulo, String descripcion, double precioCompra, double precioVenta,
-			int stock) {
+	/**
+	 * m√©todo que modifica el art√≠culo (reescribir los par√°metros descripcion,precios y stock)
+	 *  seg√∫n el codigo que le pase el usuario.
+	 * @param articulo
+	 * @param descripcion
+	 * @param precioCompra
+	 * @param precioVenta
+	 * @param stock
+	 * @throws ValorNoPositivoException 
+	 */
+	 void modificarArticulo(Articulo articulo, String descripcion, double precioCompra, double precioVenta,
+			int stock) throws ValorNoPositivoException {
 
-		int indice = almacen.indexOf(articulo);
 		articulo.modificarArticulo(descripcion, precioCompra, precioVenta, stock);
-		almacen.set(indice, almacen.get(indice));
+		System.out.println("Art√≠culo modificado correctamente.\n");
+		//almacen.set(indice, almacen.get(indice));
 
 	}
 
-	// mÈtodo que incrementa el stock seg˙n el codigo que le pasa el usuario
-	public void incrementarStock(int codigo, int cantidad) {
+	/**
+	 * m√©todo que incrementa el stock seg√∫n el codigo que le pasa el usuario
+	 * @param codigo
+	 * @param cantidad
+	 * @throws ValorNoPositivoException 
+	 */
+	public void incrementarStock(int codigo, int cantidad) throws ValorNoPositivoException {
 
 		Articulo articulo = almacen.get(almacen.indexOf(new Articulo(codigo)));
 		articulo.incrementarStock(cantidad);
 
 	}
 
-	// mÈtodo que decrementa el stock seg˙n el codigo que le pasa el usuario
-	public void decrementarStock(int codigo, int cantidad) {
+	/**
+	 * m√©todo que decrementa el stock seg√∫n el codigo que le pasa el usuario
+	 * @param codigo
+	 * @param cantidad
+	 * @throws ValorNoPositivoException 
+	 */
+	public void decrementarStock(int codigo, int cantidad) throws ValorNoPositivoException {
 
 		Articulo articulo = almacen.get(almacen.indexOf(new Articulo(codigo)));
 		articulo.decrementarStock(cantidad);
 
 	}
 
-	// sobrecarga del constructor (˙nicamente codigo)
+	/**
+	 * sobrecarga del constructor (√∫nicamente codigo)
+	 * @param codigo
+	 * @return
+	 */
 	public Articulo getCodigo(int codigo) {
 
 		return almacen.get(almacen.indexOf(new Articulo(codigo)));

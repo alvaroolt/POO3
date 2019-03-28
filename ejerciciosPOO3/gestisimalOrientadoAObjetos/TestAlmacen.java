@@ -2,20 +2,15 @@ package ejerciciosPOO3.gestisimalOrientadoAObjetos;
 
 import java.util.Scanner;
 
-import javax.sound.midi.SysexMessage;
-
-import ejerciciosPOO3.gestisimalOrientadoAObjetos.excepciones.ParametroNoNumericoException;
-import ejerciciosPOO3.gestisimalOrientadoAObjetos.excepciones.ValorNoPositivoException;
-
 /**
- * Crea el programa GESTISIMAL (GESTIÛn SIMplificada de AlmacÈn) para llevar el
- * control de los artÌculos de un almacÈn. De cada artÌculo se debe saber el
- * cÛdigo, la descripciÛn, el precio de compra, el precio de venta y el stock
- * (n˙mero de unidades). La entrada y salida de mercancÌa supone respectivamente
- * el incremento y decremento de stock de un determinado artÌculo. Hay que
- * controlar que no se pueda sacar m·s mercancÌa de la que hay en el almacÈn.
+ * Crea el programa GESTISIMAL (GESTI√≥n SIMplificada de Almac√©n) para llevar el
+ * control de los art√≠culos de un almac√©n. De cada art√≠culo se debe saber el
+ * c√≥digo, la descripci√≥n, el precio de compra, el precio de venta y el stock
+ * (n√∫mero de unidades). La entrada y salida de mercanc√≠a supone respectivamente
+ * el incremento y decremento de stock de un determinado art√≠culo. Hay que
+ * controlar que no se pueda sacar m√°s mercanc√≠a de la que hay en el almac√©n.
  * 
- * @author ¡lvaro Leiva
+ * @author √Ålvaro Leiva
  * @author Rafael Infante
  * @version 1.0
  */
@@ -27,7 +22,7 @@ public class TestAlmacen {
 	// objeto almacen
 	static Almacen almacen = new Almacen();
 
-	public static void main(String[] args) throws ParametroNoNumericoException {
+	public static void main(String[] args) throws ParametroNoNumericoException, ValorNoPositivoException {
 
 		almacen.darAlta("Coca-Cola", 30, 45, 68);
 		almacen.darAlta("Nestea", 22, 35, 40);
@@ -37,31 +32,40 @@ public class TestAlmacen {
 
 	}
 
-	// mÈtodo que muestra el men˙ del almacÈn
+	/**
+	 * metodo vacio que muestra el menu del almacen
+	 */
 	private static void mostrarMenu() {
 
-		System.out.println("ALMACEN" + "\n=========" + "\n1. Listado" + "\n2. Alta" + "\n3. Baja" + "\n4. ModificaciÛn"
-				+ "\n5. Entrada de mercancÌa" + "\n6. Salida de mercancÌa" + "\n7. Salir" + "\n");
+		System.out.println("ALMACEN" + "\n=========" + "\n1. Listado" + "\n2. Alta" + "\n3. Baja" + "\n4. Modificaci√≥n"
+				+ "\n5. Entrada de mercanc√≠a" + "\n6. Salida de mercanc√≠a" + "\n7. Salir" + "\n");
 
 	}
 
-	// mÈtodo que devuelve un entero, el cual define la opciÛn del men˙
+	/**
+	 * m√©todo que devuelve un entero, el cual define la opci√≥n del men√∫
+	 * 
+	 * @return int
+	 * @throws ParametroNoNumericoException
+	 */
 	private static int elegirOpcion() throws ParametroNoNumericoException {
 
 		try {
-			System.out.print("\nElige una opciÛn: ");
+			System.out.print("\nElige una opci√≥n: ");
 			int opcion = sc.nextInt();
 			return opcion;
-		} catch (Exception e) { // si opcion no es numÈrico, salta el catch
+		} catch (Exception e) { // si opcion no es num√©rico, salta el catch
 
-			System.err.println("Error al introducir el par·metro.");
+			System.err.println("Error al introducir el par√°metro. Has de introducir valores num√©ricos.");
 			sc.nextLine();
 			return 0;
 		}
 
 	}
 
-	// mÈtodo que finaliza el programa
+	/**
+	 * m√©todo vacio que finaliza el programa
+	 */
 	private static void finalizarPrograma() {
 
 		System.out.println("Fin de programa.");
@@ -69,7 +73,11 @@ public class TestAlmacen {
 
 	}
 
-	// mÈtodo que ejecuta el men˙ junto a mostrarMenu() y elegirOpcion()
+	/**
+	 * m√©todo vacio que ejecuta el men√∫ junto a mostrarMenu() y elegirOpcion()
+	 * 
+	 * @throws ParametroNoNumericoException
+	 */
 	private static void ejecutaMenu() throws ParametroNoNumericoException {
 
 		int opcion;
@@ -81,7 +89,6 @@ public class TestAlmacen {
 
 			case 1:
 				almacen.muestraListado();
-				// System.out.println(almacen);
 				break;
 
 			case 2:
@@ -108,9 +115,9 @@ public class TestAlmacen {
 				finalizarPrograma();
 				break;
 
-			// si el switch no entra en ning˙n case, entra en default
+			// si el switch no entra en ning√∫n case, entra en default
 			default:
-				System.out.println("No introdujiste una opciÛn correcta. IntÈntalo de nuevo.\n");
+				System.out.println("No introdujiste una opci√≥n correcta. Int√©ntalo de nuevo.\n");
 				break;
 			}
 		} while (opcion != 7);
@@ -118,161 +125,168 @@ public class TestAlmacen {
 	}
 
 	/**
-	 * mÈtodo que aÒade un nuevo artÌculo al almacÈn
+	 * m√©todo vacio que a√±ade un nuevo art√≠culo al almac√©n
 	 */
 	private static void darAlta() {
 
 		try {
 
-			System.out.println("Introduce una breve descripciÛn del artÌculo:");
+			System.out.println("Introduce una breve descripci√≥n del art√≠culo:");
 			String descripcion = sc.next();
 
-			System.out.print("Precio de compra del artÌculo: ");
+			System.out.print("Precio de compra del art√≠culo: ");
 			double precioCompra = sc.nextDouble();
 
-			System.out.print("Precio de venta del artÌculo: ");
+			System.out.print("Precio de venta del art√≠culo: ");
 			double precioVenta = sc.nextDouble();
 
-			System.out.print("Cantidad del artÌculo en stock: ");
+			System.out.print("Cantidad del art√≠culo en stock: ");
 			int stock = sc.nextInt();
 
 			// esta condicion controla que no hayan valores negativos
-			if (precioCompra < 0 || precioVenta < 0 || stock < 0) {
-				throw new ValorNoPositivoException("Introdujiste alg˙n valor negativo.");
-			}
+			// if (precioCompra < 0 || precioVenta < 0 || stock < 0) {
+			// throw new ValorNoPositivoException("Introdujiste alg√∫n valor negativo.");
+			// }
 
 			almacen.darAlta(descripcion, precioCompra, precioVenta, stock);
-			System.out.println("ArtÌculo dado de alta correctamente.\n");
+			System.out.println("Art√≠culo dado de alta correctamente.\n");
 
-		} catch (Exception e) { // si se introducen par·metros errÛneos, salta el catch (ejemplo, texto en
+		} catch (Exception e) { // si se introducen par√°metros err√≥neos, salta el catch (ejemplo, texto en
 														// integer)
 
-			System.err.println("Hubo alg˙n problema al aÒadir el artÌculo.\n");
+			System.err.println("Hubo alg√∫n problema al a√±adir el art√≠culo.\n" + e.getMessage());
 			sc.nextLine();
-			// System.exit(0);
 		}
 	}
 
 	/**
-	 * mÈtodo que elimina un artÌculo del almacÈn
+	 * m√©todo vacio que elimina un art√≠culo del almac√©n
 	 */
 	private static void darBaja() {
 
 		try {
 
-			System.out.print("Introduce el cÛdigo identificador del artÌculo a eliminar: ");
+			System.out.print("Introduce el c√≥digo identificador del art√≠culo a eliminar: ");
 			int codigo = sc.nextInt();
 
 			almacen.darBaja(codigo);
 
 		} catch (Exception e) { // si no existe el codigo, salta el catch
 
-			System.err.println("El artÌculo no se encuentra en el almacÈn.\n");
+			System.err.println("El art√≠culo no se encuentra en el almac√©n.\n");
 			sc.nextLine();
 
 		}
 
 	}
 
-	// mÈtodo que permite modificar los valores de un artÌculo
+	/**
+	 * m√©todo vacio que permite modificar los valores de un art√≠culo
+	 */
 	private static void modificarArticulo() {
 
 		try {
 
-			System.out.print("Introduce el cÛdigo identificador del artÌculo a modificar: ");
+			System.out.print("Introduce el c√≥digo identificador del art√≠culo a modificar: ");
 			int codigo = sc.nextInt();
 			sc.nextLine();
 			Articulo articulo = almacen.getCodigo(codigo);
 
-			System.out.println("Introduce una breve descripciÛn del artÌculo:");
+			System.out.println("Introduce una breve descripci√≥n del art√≠culo:");
 			String descripcion = sc.nextLine();
 
-			System.out.print("Precio de compra del artÌculo: ");
+			System.out.print("Precio de compra del art√≠culo: ");
 			double precioCompra = sc.nextDouble();
 
-			System.out.print("Precio de venta del artÌculo: ");
+			System.out.print("Precio de venta del art√≠culo: ");
 			double precioVenta = sc.nextDouble();
 
-			System.out.print("Cantidad del artÌculo en stock: ");
+			System.out.print("Cantidad del art√≠culo en stock: ");
 			int stock = sc.nextInt();
 
-			if (precioCompra < 0 || precioVenta < 0 || stock < 0) {
-				throw new ValorNoPositivoException("Introdujiste alg˙n valor negativo.");
-			}
+			// if (precioCompra < 0 || precioVenta < 0 || stock < 0) {
+			// throw new ValorNoPositivoException("Introdujiste alg√∫n valor negativo.");
+			// }
 
 			almacen.modificarArticulo(articulo, descripcion, precioCompra, precioVenta, stock);
 
 		} catch (Exception e) {
 
-			System.err.println("Hubo alg˙n problema al modificar el artÌculo.\n");
+			System.err.println("Hubo alg√∫n problema al modificar el art√≠culo.\n" + e.getMessage());
 			sc.nextLine();
 
 		}
 	}
 
-	// mÈtodo que incrementa el stock seg˙n el par·metro codigo que le envie el
-	// usuario
+	/**
+	 * m√©todo vacio que incrementa el stock seg√∫n el par√°metro codigo que le envie
+	 * el usuario
+	 */
 	private static void incrementarStock() {
 
 		try {
 
-			System.out.print("Introduce el cÛdigo identificador del artÌculo a aumentar el stock: ");
+			System.out.print("Introduce el c√≥digo identificador del art√≠culo a aumentar el stock: ");
 			int codigo = sc.nextInt();
-			sc.nextLine();
+			// sc.nextLine();
 
 			Articulo articulo = almacen.getCodigo(codigo);
 
-			System.out.print("Introduce cu·nto stock nuevo hay en el almacÈn (" + articulo.getStock() + " actuales): ");
+			System.out.print("Introduce cu√°nto stock nuevo hay en el almac√©n (" + articulo.getStock() + " actuales): ");
 			int cantidad = sc.nextInt();
+			// throw new ValorNoPositivoException("No se pueden a√±adir n√∫meros negativos.");
+
 			// sc.nextLine();
 
 			almacen.incrementarStock(codigo, cantidad);
-			System.out.println("Stock aÒadido correctamente.");
+			System.out.println("Stock a√±adido correctamente.");
 
-			if (cantidad < 0) {
-
-				throw new ValorNoPositivoException("No se pueden aÒadir n˙meros negativos.");
-
-			}
+			// if (cantidad < 0) {
+			//
+			//
+			//
+			// }
 
 		} catch (Exception e) {
 
-			System.err.println("Hubo alg˙n problema al incrementar el stock.\n");
-			sc.nextLine();
+			System.err.println("Hubo alg√∫n problema al incrementar el stock.\n" + e.getMessage());
+			// sc.nextLine();
 
 		}
 	}
 
-	// mÈtodo que decrementa el stock seg˙n el par·metro codigo que le envie el
-	// usuario
+	/**
+	 * m√©todo vacio que decrementa el stock seg√∫n el par√°metro codigo que le envie
+	 * el usuario
+	 */
 	private static void decrementarStock() {
 
 		try {
 
-			System.out.print("Introduce el cÛdigo identificador del artÌculo a disminuir el sotck: ");
+			System.out.print("Introduce el c√≥digo identificador del art√≠culo a disminuir el sotck: ");
 			int codigo = sc.nextInt();
 			sc.nextLine();
 
 			Articulo articulo = almacen.getCodigo(codigo);
 
-			System.out.println("Introduce cu·nto stock se ha eliminado del almacÈn (" + articulo.getStock() + " actuales): ");
+			System.out.println("Introduce cu√°nto stock se ha eliminado del almac√©n (" + articulo.getStock() + " actuales): ");
 			int cantidad = sc.nextInt();
 			// sc.nextLine();
 
-			if (cantidad < 0) {
-				cantidad *= -1;
-			}
+			// if (cantidad < 0) {
+			// cantidad *= -1;
+			// }
 
-			if (articulo.getStock() - cantidad < 0) {
-				throw new ValorNoPositivoException("El stock no puede ser negativo.");
-			}
+			// if (articulo.getStock() - cantidad < 0) {
+			// throw new ValorNoPositivoException("El stock no puede ser negativo.");
+			// }
 
 			almacen.decrementarStock(codigo, cantidad);
 			System.out.println("Stock eliminado correctamente.");
 
 		} catch (Exception e) {
 
-			System.err.println("Hubo alg˙n problema al decrementar el stock.\n");
+			System.err.println("Hubo alg√∫n problema al decrementar el stock.\n" + e.getMessage());
 			sc.nextLine();
 
 		}
