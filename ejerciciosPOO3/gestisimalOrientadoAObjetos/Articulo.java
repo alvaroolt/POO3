@@ -48,10 +48,22 @@ public class Articulo {
 	private String descripcion;
 	private double precioCompra;
 	private double precioVenta;
+	/**
+	 * Cantidad de artículos en el almacén. Nopuede ser negativo
+	 */
 	private int stock;
 
 	// constructor
-	public Articulo(String descripcion, double precioCompra, double precioVenta, int stock) throws ValorNoPositivoException {
+	/**
+	 * 
+	 * @param descripcion
+	 * @param precioCompra
+	 * @param precioVenta
+	 * @param stock
+	 * @throws ValorNoPositivoException
+	 */
+	public Articulo(String descripcion, double precioCompra, double precioVenta, int stock)
+			throws ValorNoPositivoException {
 
 		setCodigo(generaCodigo());
 		setDescripcion(descripcion);
@@ -88,9 +100,11 @@ public class Articulo {
 	}
 
 	private void setPrecioCompra(double precioCompra) throws ValorNoPositivoException {
-		if (this.precioCompra < 0)
+		if (precioCompra < 0)
 			throw new ValorNoPositivoException("Precio de compra no puede ser negativo.");
-		this.precioCompra = precioCompra;
+		else {
+			this.precioCompra = precioCompra;
+		}
 	}
 
 	public double getPrecioVenta() {
@@ -98,7 +112,7 @@ public class Articulo {
 	}
 
 	private void setPrecioVenta(double precioVenta) throws ValorNoPositivoException {
-		if (this.precioVenta < 0)
+		if (precioVenta < 0)
 			throw new ValorNoPositivoException("Precio de venta no puede ser negativo.");
 		this.precioVenta = precioVenta;
 	}
@@ -106,9 +120,13 @@ public class Articulo {
 	public int getStock() {
 		return stock;
 	}
-
+/**
+ * 
+ * @param stock
+ * @throws ValorNoPositivoException
+ */
 	void setStock(int stock) throws ValorNoPositivoException {
-		if (this.stock < 0)
+		if (stock < 0)
 			throw new ValorNoPositivoException("Stock no puede ser negativo.");
 		this.stock = stock;
 	}

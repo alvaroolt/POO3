@@ -72,8 +72,8 @@ public class Almacen {
 	 */
 	public void darAlta(String descripcion, double precioCompra, double precioVenta, int stock) throws ValorNoPositivoException{
 
-		Articulo articulo = new Articulo(descripcion, precioCompra, precioVenta, stock);
-		almacen.add(articulo);
+		//Articulo articulo = new Articulo(descripcion, precioCompra, precioVenta, stock);
+		almacen.add(new Articulo(descripcion, precioCompra, precioVenta, stock));
 
 	}
 

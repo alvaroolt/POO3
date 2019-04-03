@@ -1,6 +1,9 @@
 package ejerciciosPOO3.gestisimalOrientadoAObjetos;
 
+import java.io.IOException;
 import java.util.Scanner;
+
+import utiles.Teclado;
 
 /**
  * Crea el programa GESTISIMAL (GESTIón SIMplificada de Almacén) para llevar el
@@ -22,9 +25,10 @@ public class TestAlmacen {
 	// objeto almacen
 	static Almacen almacen = new Almacen();
 
-	public static void main(String[] args) throws ParametroNoNumericoException, ValorNoPositivoException {
+	public static void main(String[] args)
+			throws ParametroNoNumericoException, ValorNoPositivoException, NumberFormatException, IOException {
 
-		almacen.darAlta("Coca-Cola", 30, 45, 68);
+		almacen.darAlta("Coca-Cola", -30, 45, 68);
 		almacen.darAlta("Nestea", 22, 35, 40);
 		almacen.darAlta("Fanta", 33, 42, 53);
 
@@ -77,8 +81,12 @@ public class TestAlmacen {
 	 * método vacio que ejecuta el menú junto a mostrarMenu() y elegirOpcion()
 	 * 
 	 * @throws ParametroNoNumericoException
+	 * @throws ValorNoPositivoException
+	 * @throws IOException
+	 * @throws NumberFormatException
 	 */
-	private static void ejecutaMenu() throws ParametroNoNumericoException {
+	private static void ejecutaMenu()
+			throws ParametroNoNumericoException, ValorNoPositivoException, NumberFormatException, IOException {
 
 		int opcion;
 		do {
@@ -126,33 +134,26 @@ public class TestAlmacen {
 
 	/**
 	 * método vacio que añade un nuevo artículo al almacén
+	 * 
+	 * @throws IOException
+	 * @throws NumberFormatException
 	 */
-	private static void darAlta() {
+	private static void darAlta() throws ValorNoPositivoException, NumberFormatException, IOException {
 
 		try {
 
-			System.out.println("Introduce una breve descripción del artículo:");
-			String descripcion = sc.next();
+			String descripcion = Teclado.leerCadena("Introduce una breve descripción del artículo:");
 
-			System.out.print("Precio de compra del artículo: ");
-			double precioCompra = sc.nextDouble();
+			double precioCompra = Teclado.leerDecimal("Precio de compra del artículo: ");
 
-			System.out.print("Precio de venta del artículo: ");
-			double precioVenta = sc.nextDouble();
+			double precioVenta = Teclado.leerDecimal("Precio de venta del artículo: ");
 
-			System.out.print("Cantidad del artículo en stock: ");
-			int stock = sc.nextInt();
-
-			// esta condicion controla que no hayan valores negativos
-			// if (precioCompra < 0 || precioVenta < 0 || stock < 0) {
-			// throw new ValorNoPositivoException("Introdujiste algún valor negativo.");
-			// }
+			int stock = Teclado.leerEntero("Cantidad del artículo en stock: ");
 
 			almacen.darAlta(descripcion, precioCompra, precioVenta, stock);
 			System.out.println("Artículo dado de alta correctamente.\n");
 
-		} catch (ValorNoPositivoException  e) { // si se introducen parámetros erróneos, salta el catch (ejemplo, texto en
-														// integer)
+		} catch (ValorNoPositivoException e) {
 
 			System.err.println("Hubo algún problema al añadir el artículo.\n" + e.getMessage());
 			sc.nextLine();
@@ -166,8 +167,7 @@ public class TestAlmacen {
 
 		try {
 
-			System.out.print("Introduce el código identificador del artículo a eliminar: ");
-			int codigo = sc.nextInt();
+			int codigo = Teclado.leerEntero("Introduce el código identificador del artículo a eliminar: ");
 
 			almacen.darBaja(codigo);
 
